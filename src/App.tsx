@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useMemo } from 'react';
 import { IdeasProvider, useIdeasContext } from './providers/IdeasProvider';
 import './App.css';
 import IdeaItem from './components/IdeaItem.tsx';
@@ -18,19 +18,26 @@ const MainUI: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState<'upvotes' | 'downvotes' | ''>('');
 
-    // Filter ideas by the user's search query
-    const filteredIdeas = ideas.filter((idea) =>
-        idea.description.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+    const displayIdeas = useMemo(() => {
+        const filteredIdeas = searchQuery
+            ? ideas.filter((idea) =>
+                  idea.description
+                      .toLowerCase()
+                      .includes(searchQuery.toLowerCase()),
+              )
+            : ideas;
 
-    // Sort the filtered ideas if requested
-    const sortedIdeas = [...filteredIdeas].sort((a, b) => {
-        if (sortBy === 'upvotes') return b.upvotes - a.upvotes;
-        if (sortBy === 'downvotes') return b.downvotes - a.downvotes;
-        return 0;
-    });
+        const sortedIdeas = sortBy
+            ? filteredIdeas.sort((a, b) => {
+                  if (sortBy === 'upvotes') return b.upvotes - a.upvotes;
+                  if (sortBy === 'downvotes') return b.downvotes - a.downvotes;
+                  return 0;
+              })
+            : filteredIdeas;
 
-    // Handle submitting a new idea
+        return sortedIdeas;
+    }, [ideas, searchQuery, sortBy]);
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         addIdea(description);
@@ -44,20 +51,18 @@ const MainUI: React.FC = () => {
             <form onSubmit={handleSubmit} className="idea-form">
                 <label htmlFor="idea-input">Add New Idea:</label>
                 <div className="form-row">
-                    <input
+                    <textarea
                         id="idea-input"
-                        type="text"
-                        placeholder="Enter game idea description..."
+                        placeholder="Enter your game ideas..."
                         value={description}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                             setDescription(e.target.value)
                         }
                     />
-                    <button type="submit">Submit</button>
                 </div>
+                <button type="submit">Submit</button>
             </form>
 
-            {/* Search and sort controls */}
             <div className="search-sort">
                 <input
                     type="text"
@@ -75,13 +80,13 @@ const MainUI: React.FC = () => {
                         )
                     }
                 >
-                    <option value="">Sort by...</option>
+                    <option value="">None</option>
                     <option value="upvotes">Upvotes</option>
                     <option value="downvotes">Downvotes</option>
                 </select>
             </div>
 
-            {sortedIdeas.map((idea) => (
+            {displayIdeas.map((idea) => (
                 <IdeaItem key={idea.id} idea={idea} />
             ))}
         </main>

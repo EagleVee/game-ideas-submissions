@@ -1,14 +1,20 @@
-/* Main container */
-.app-container {
-    max-width: 600px;
+#root {
+    width: 100vw;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
+}
+
+.app-container {
+    width: 100%;
     font-family: sans-serif;
 }
 
-/* Form for adding new ideas */
 .idea-form {
     margin-bottom: 1rem;
+}
+
+.idea-form button {
+    margin-top: 0.5rem;
 }
 
 .idea-form label {
@@ -20,57 +26,74 @@
     margin-top: 0.5rem;
 }
 
-.form-row input[type='text'] {
+.form-row textarea {
     flex: 1;
+    background: #1a1a1a;
+    color: white;
     margin-right: 0.5rem;
     padding: 0.5rem;
+    min-height: 3rem;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
 }
 
-/* Search + sort controls */
+.form-row textarea:focus {
+    border-color: var(--primary-color);
+}
+
 .search-sort {
     margin-bottom: 1rem;
 }
 
 .search-sort input[type='text'] {
-    margin-right: 1rem;
+    width: 20rem;
     padding: 0.5rem;
+    background: #1a1a1a;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.search-sort input[type='text']:focus {
+    border-color: var(--primary-color);
 }
 
 .search-sort select {
+    margin-left: 0.5rem;
     padding: 0.5rem;
+    width: 10rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
 }
 
-/* Individual idea item */
 .idea-list-item {
     border: 1px solid #ccc;
-    padding: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
     margin-bottom: 1rem;
 }
 
 .vote-section {
+    margin-top: 0.5rem;
     display: flex;
     align-items: center;
-    margin-top: 0.5rem;
 }
 
-.vote-section button {
+.vote-btn {
     margin-right: 0.5rem;
     padding: 0.3rem 0.6rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-width: 5rem;
+    color: white;
 }
 
-.vote-section span {
-    margin: 0 1rem 0 0;
+.vote-btn-active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Extra spacing for downvote count */
-.downvote-count {
-    margin-left: 1rem;
-}
-
-/* Italic note when user has voted */
-.voted-status {
-    margin-top: 0.5rem;
-    font-style: italic;
-    color: #555;
+.vote-count {
+    margin-left: 0.25rem;
 }
