@@ -4,7 +4,9 @@ This project is a simple application for submitting and managing game ideas. It 
 
 ## How to Run the Project
 
-1. Install dependencies:
+1. Make sure you have `node` installed on your machine.
+
+2. Install dependencies:
 
     ```sh
     yarn install
@@ -12,7 +14,7 @@ This project is a simple application for submitting and managing game ideas. It 
     npm install
     ```
 
-2. Start the development server:
+3. Start the development server:
 
     ```sh
     yarn dev
@@ -20,4 +22,4 @@ This project is a simple application for submitting and managing game ideas. It 
     npm run dev
     ```
 
-3. Open your browser and navigate to `http://localhost:3000` (or the port specified in your Vite configuration).
+4. Open your browser and navigate to `http://localhost:3000` (or the port specified in your Vite configuration).
