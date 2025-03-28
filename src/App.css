@@ -1,0 +1,76 @@
+/* Main container */
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    font-family: sans-serif;
+}
+
+/* Form for adding new ideas */
+.idea-form {
+    margin-bottom: 1rem;
+}
+
+.idea-form label {
+    font-weight: bold;
+}
+
+.form-row {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.form-row input[type='text'] {
+    flex: 1;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+}
+
+/* Search + sort controls */
+.search-sort {
+    margin-bottom: 1rem;
+}
+
+.search-sort input[type='text'] {
+    margin-right: 1rem;
+    padding: 0.5rem;
+}
+
+.search-sort select {
+    padding: 0.5rem;
+}
+
+/* Individual idea item */
+.idea-list-item {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.vote-section {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.vote-section button {
+    margin-right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+.vote-section span {
+    margin: 0 1rem 0 0;
+}
+
+/* Extra spacing for downvote count */
+.downvote-count {
+    margin-left: 1rem;
+}
+
+/* Italic note when user has voted */
+.voted-status {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #555;
+}
